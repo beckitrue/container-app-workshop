@@ -10,6 +10,7 @@ Why have a reverse proxy? A reverse proxy is a server that sits between clients 
 
 In this lab, we will use `nginx` as a reverse proxy to serve static files and a simple web application with Flask.
 
+<img src="images/nginx-diagram.png" width="600">
 
 ## Objectives
 
@@ -23,6 +24,8 @@ In this lab, we will use `nginx` as a reverse proxy to serve static files and a 
 - Understand the concept of a reverse proxy
 - Understand how to configure `nginx` as a reverse proxy
 - Understand how to bind mount a volume to a container so that we can make configuration changes on our host machine and not in the container
+- Understand how to create a container image
+- Understand how to use `docker-compose` to manage multiple containers
 
 ## Prerequisites
 
