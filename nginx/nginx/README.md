@@ -67,10 +67,12 @@ You can use the `docker network inspect <network-name>` command to get more info
 
 To get the IP address of a contianer, you can run the `docker inspect <container-name>` command and look for the `IPAddress` field.
 
-''' 
+For example, to get the IP address of the `simple-web` container, you would run the following command:
+
+```
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container-name or id>
-'''
+```
 
 #### Get the IP address of both the `nginx` and `simple-web` servers. You will need this information later to update the configuration files.
 
@@ -93,9 +95,9 @@ Now our files are in place to configure the `nginx` server.
 
 To create the `nginx` server, run the following command from the `container-app-workshop/nginx/nginx` directory:
 
-'''
+```
 docker-compose up -d
-'''
+```
 
 This command will create the `nginx` server and run it in the background. You can verify that the server is running by running the `docker ps` command and checking the status of the `nginx` container.
 
@@ -114,9 +116,9 @@ Your `default.conf` file is located at `/var/nginx/conf/default.conf` on the hos
 
 Restart the `nginx` server by running the following command from the `container-app-workshop/nginx/nginx` directory:
 
-'''
+```
 docker-compose restart
-'''
+```
 
 :white_check_mark: Now open a browser tab and enter the address of your `nginx` server. For example `http://172.19.02`. You should see the `index.html` file with the links to the two routes of the `flask` server. Click on the links to test the routes.
 
