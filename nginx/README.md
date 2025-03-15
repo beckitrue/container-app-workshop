@@ -6,7 +6,9 @@ This is one part of a series of labs on building systems with containers. We wil
 
 ## Introduction
 
-Why have a reverse proxy? A reverse proxy is a server that sits between clients and backend servers. It forwards client requests to the appropriate backend server. A reverse proxy can perform various tasks such as load balancing, authentication, SSL termination, and caching. In this lab, we will use `nginx` as a reverse proxy to serve static files and a simple web application with Flask.
+Why have a reverse proxy? A reverse proxy is a server that sits between clients and backend servers. It forwards client requests to the appropriate backend server. A reverse proxy can perform various tasks such as load balancing, authentication, SSL termination, and caching. 
+
+In this lab, we will use `nginx` as a reverse proxy to serve static files and a simple web application with Flask.
 
 
 ## Objectives
@@ -35,5 +37,8 @@ You will need a text editor to edit files. You can use any text editor of your c
 
 ## Instructions
 
-### Step 1: Begin with creating the Flask application container following the instructions in the `simple-web` directory
-### Step 2: Create the `nginx` container followig the instructions in the `nginx` directory
+### Step 1: 
+Begin with creating the Flask application container following the instructions in the `simple-web` directory
+
+### Step 2: 
+Create the `nginx` container followig the instructions in the `nginx` directory
