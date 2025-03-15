@@ -1,0 +1,25 @@
+version: '3'
+services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        hostname: nginx
+        volumes:
+            # content
+            - type: bind
+              source: /var/www
+              target: /usr/share/nginx/html
+              read_only: true
+            
+            # nginx config files  
+            - type: bind
+              source: /var/nginx/conf
+              target: /etc/nginx/conf.d
+              read_only: true
+        networks:
+            - lab
+
+networks:
+    lab:
+        external: false
+        name: lab
