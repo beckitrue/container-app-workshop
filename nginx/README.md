@@ -38,7 +38,11 @@ You will need a text editor to edit files. You can use any text editor of your c
 ## Instructions
 
 ### Step 1: 
-Begin with creating the Flask application container following the instructions in the `simple-web` directory
+Clone this [container-app-workshop repo](https://github.com/beckitrue/container-app-workshop) to your local machine if you have not done so already.
 
-### Step 2: 
-Create the `nginx` container followig the instructions in the `nginx` directory
+
+### Step 2:
+Begin with creating the Flask application container by following the instructions in the `simple-web` directory
+
+### Step 3: 
+Create the `nginx` container by followig the instructions in the `nginx` directory
