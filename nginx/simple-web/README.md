@@ -1,6 +1,6 @@
 # README
 
-The `simple-web` container is a simple Flask server that gives us a targe for our `nginx` reverse proxy container.
+The `simple-web` container is a simple Flask server that gives us a target for our `nginx` reverse proxy container.
 
 The container comes from an article in Medium by Andrea Rubino. The article is [here](https://medium.com/@andrearubino/deploy-a-flask-app-with-nginx-and-gunicorn-inside-docker-62b26dc0e15a).
 
@@ -23,6 +23,10 @@ There is no need to change any of the files in the `simple-web` directory.
 ```docker build -t simple-web:latest .```
 
 This will build the container image from the instructions in the Dockerfile, and tag it as `simple-web:latest`.
+
+\u2705 You can verify that the image was built by running the following command:
+
+```docker images``` and looking for the `simple-web` image.
 
 The Dockerfile instructs the build process to:
 - Use the `python:3.7-slim` image as the base image
