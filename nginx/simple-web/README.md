@@ -24,12 +24,12 @@ There is no need to change any of the files in the `simple-web` directory.
 
 This will build the container image from the instructions in the Dockerfile, and tag it as `simple-web:latest`.
 
-\u2705 You can verify that the image was built by running the following command:
+:white_check_mark: You can verify that the image was built by running the following command:
 
 ```docker images``` and looking for the `simple-web` image.
 
 The Dockerfile instructs the build process to:
-- Use the `python:3.7-slim` image as the base image
+- Use the `python:3.10.0-slim-buster` image as the base image
 - Copy the `requirements.txt` file to the image
 - Copy the `app.py` file to the image
 - Install the Python packages listed in the `requirements.txt` file (Flask)
