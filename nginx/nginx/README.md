@@ -1,6 +1,6 @@
 # README
 
-In this step, we are going to configure a `nginx` server as a reverse proxy. The `nginx` server will run in a network called `lab` and will listen on port `80`. It will forward the requests to the `flask` server running on port `5000`, that is running in another network that is briged to the local host.
+In this step, we are going to configure a `nginx` server as a reverse proxy. The `nginx` server will run in a network called `lab` and will listen on port `80`. It will forward the requests to the `flask` server running on port `5000`, that is running in another network that is bridged to the local host.
 
 This is assuming that you've already completed the `simple-web` configuration in the previous steps of this lab.
 
@@ -65,7 +65,7 @@ You can use the `docker network inspect <network-name>` command to get more info
 
 ### Get the IP address of the containers
 
-To get the IP address of a contianer, you can run the `docker inspect <container-name>` command and look for the `IPAddress` field.
+To get the IP address of a contianer, you can run the `docker inspect <container-name> or id` command and look for the `IPAddress` field.
 
 For example, to get the IP address of the `simple-web` container, you would run the following command:
 
@@ -120,7 +120,7 @@ Restart the `nginx` server by running the following command from the `container-
 docker-compose restart
 ```
 
-:white_check_mark: Now open a browser tab and enter the address of your `nginx` server. For example `http://172.19.02`. You should see the `index.html` file with the links to the two routes of the `flask` server. Click on the links to test the routes.
+:white_check_mark: Now open a browser tab and enter the address of your `nginx` server. For example `http://172.19.0.2`. You should see the `index.html` file with the links to the two routes of the `flask` server. Click on the links to test the routes.
 
 :white_check_mark: You should see the `You're home now!` message from the `simple-web/` link.and the `Hello, World!` message from the `simple-web/hello-world` link.
 
