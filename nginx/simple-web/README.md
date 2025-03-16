@@ -24,14 +24,14 @@ There is no need to change any of the files in the `simple-web` directory.
 
 #### What does this command do?
 
-This will build the container image from the instructions in the Dockerfile, and tag it as `simple-web:latest`.
+This will build the container image from the instructions in the Dockerfile, and tag it as `simple-web:latest`
 
 The Dockerfile instructs the build process to:
 - Use the `python:3.10.0-slim-buster` image as the base image
 - Copy the `requirements.txt` file to the image
 - Copy the `app.py` file to the image
 - Install the Python packages listed in the `requirements.txt` file (Flask)
-- Run the Flask server when the container starts with the command to listen on all interfaces(--host=0.0.0.0)
+- Run the Flask server when the container starts with the command to listen on all interfaces(`--host=0.0.0.0`)
 
 #### How do I know the image was built?
 
