@@ -49,7 +49,7 @@ For example, we define the container image, the networks, the volumes, and the p
 
 You can use Docker Desktop or the Docker CLI to find the information you need to update the configuration files. You will need the IP address of the `nginx` and `simple-web` servers to update the configuration files. 
 
-The insturctions below will show you how to get the IP address of the containers using the Docker CLI.
+The instructions below will show you how to get the IP address of the containers using the Docker CLI.
 
 ## Networking 
 
