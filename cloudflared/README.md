@@ -43,3 +43,6 @@ docker run cloudflare/cloudflared:latest tunnel --no-autoupdate --url <ip_addres
 *don't run detached because we need to see the output*
 3. Copy URL in the message to connect to the nginx welcome page
 
+## What's Next?
+
+Try out some more complex configurations. Refer to the [Cloudflare Zero Trust Tutorials](https://developers.cloudflare.com/cloudflare-one/tutorials/) for more information on how to configure a Cloudflare Tunnel for non-web applications, such as SSH, RDP, and Kubernetes.
