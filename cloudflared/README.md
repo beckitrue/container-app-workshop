@@ -41,6 +41,7 @@ docker pull cloudflare/cloudflared:latest
 docker run cloudflare/cloudflared:latest tunnel --no-autoupdate --url <ip_address_of_nginx_container:8080
 ```
 *don't run detached because we need to see the output*
+
 3. Copy URL in the message to connect to the nginx welcome page
 
 ## What's Next?
