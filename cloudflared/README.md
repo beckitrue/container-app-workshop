@@ -51,7 +51,7 @@ Now that you see how to configure the Cloudflare Tunnel, you can try to configur
 <details>
 <summary>Click to see the answer</summary>
 <ul>
-	<li>You will need to change the URL in the `cloudflared` command to point to the `nginx` reverse proxy instead of the `nginx` container</li>
+	<li>You will need to change the URL in the `cloudflared` command to point to the `nginx` reverse proxy from the previous labe instead of the `nginx` container in this lab</li>
     <li>You will need to specify the `lab` network in the `docker run` command for the `cloudflared` container</li></ul>
 <br>Try it out yourself!<br>
 <pre>$ docker run --network lab cloudflare/cloudflared:latest tunnel --no-autoupdate --url &ltip_address_of_nginx_container&gt</pre>
