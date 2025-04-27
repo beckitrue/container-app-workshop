@@ -39,7 +39,11 @@ We are using the bind mount for the content file for the same reason we are usin
 
 ## Docker Compose
 
-Up until now, we've created containers with a Dockerfile or directly from the command line. In this step, we are going to use `docker-compose` to create everything we need for the containers. Both the `simple-web` and the `nginx` containers, and the `lab` network configuration are in the `docker compose` file. The `docker-compose` file is located at `docker-compose.yaml` in the root of this repository.
+Up until now, we've created containers with a Dockerfile or directly from the command line. In this step, we are going to use `docker-compose` to create everything we need for the containers.
+
+The `docker-compose.yaml` file is configured to create the `nginx` and `simple-web` containers, and the `lab` network. The `nginx` container is configured to use the bind mounts for the configuration and content files. The `simple-web` container is configured to use the `simple-web` image that we created in the previous lab. You can click on the arrow to expand the `docker-compose.yaml` file to see the configuration. The `docker-compose.yaml` file is found in this directory: `container-app-workshop/nginx/nginx/`.
+
+```yaml
 
 <details>
 <summary>docker-compose.yaml</summary>
