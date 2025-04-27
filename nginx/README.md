@@ -45,7 +45,7 @@ Clone the [container-app-workshop repo](https://github.com/beckitrue/container-a
 
 
 ### Step 2:
-Begin with creating the Flask application container by following the instructions in the `nginx/simple-web` directory
+Begin with creating the Flask application container image by following the instructions in the `nginx/simple-web` directory
 
 ### Step 3: 
-Create the `nginx` container by followig the instructions in the `nginx/nginx` directory
+Create the `nginx` and `simple-web` containers by followig the instructions in the `nginx/nginx` directory
