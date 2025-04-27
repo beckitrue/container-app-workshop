@@ -46,4 +46,16 @@ docker run cloudflare/cloudflared:latest tunnel --no-autoupdate --url <ip_addres
 
 ## What's Next?
 
+Now that you see how to configure the Cloudflare Tunnel, you can try to configure it to connect to the `nginx` reverse proxy that you set up in the previous lab. What do you think  you need to change to make that work?
+
+<details>summary="Click to see the answer">
+- You will need to change the URL in the `cloudflared` command to point to the `nginx` reverse proxy instead of the `nginx` container.
+- You will need to specify the `lab` network in the `docker run` command for the `cloudflared` container.
+`docker run --network lab cloudflare/cloudflared:latest tunnel --no-autoupdate --url <ip_address_of_nginx_container>`
+
+Try it out for yourself!
+</details>
+
+## Take it Further
+
 Try out some more complex configurations. Refer to the [Cloudflare Zero Trust Tutorials](https://developers.cloudflare.com/cloudflare-one/tutorials/) for more information on how to configure a Cloudflare Tunnel for non-web applications, such as SSH, RDP, and Kubernetes.
