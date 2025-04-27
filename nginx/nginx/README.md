@@ -8,6 +8,8 @@ In this lab we are going to configure a `nginx` server as a reverse proxy. The `
 
 The `nginx` reverse proxy server is configured by its configuration file. The configuration file is located at `/etc/nginx/nginx.conf` on the container, but we are using a bind mount to `/var/nginx/conf/default.conf`.  This allows us to modify the configuration file on the host and the changes will be reflected in the container.
 
+We're assuming you've already created the `simple-web` container image. If you haven't, please refer to the [simple-web](../simple-web/README.md) lab for instructions on how to create the `simple-web` container image.
+
 ### nginx Configuration file
 
 This file is configured to add a new server block that listens on port `80` and forwards the requests to the `flask` server. The `simple-web` configuration that the `flask` server is running on port `5000`, and has two routes: `/` and `/hello-world`.
@@ -39,11 +41,54 @@ We are using the bind mount for the content file for the same reason we are usin
 
 Up until now, we've created containers with a Dockerfile or directly from the command line. In this step, we are going to use `docker-compose` to create everything we need for the containers. Both the `simple-web` and the `nginx` containers, and the `lab` network configuration are in the `docker compose` file. The `docker-compose` file is located at `docker-compose.yaml` in the root of this repository.
 
+<details>
+<summary>docker-compose.yaml</summary>
+
+```yaml
+name: nginx-lab
+services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        hostname: nginx
+        volumes:
+            # content
+            - type: bind
+              source: /var/www
+              target: /usr/share/nginx/html
+              read_only: true
+            
+            # nginx config files  
+            - type: bind
+              source: /var/nginx/conf
+              target: /etc/nginx/conf.d
+              read_only: true
+        ports:
+            - "80:80"
+        networks:
+           - lab
+    simple-web:
+        image: simple-web
+        container_name: simple-web
+        ports:
+            - "5000:5000"
+        networks:
+            - lab
+
+networks:
+   lab:
+      external: false
+      driver: bridge
+      name: lab
+```
+</details>
+
+
 Documentation for `docker-compose` can be found [here](https://docs.docker.com/compose/).
 
 #### Note: 
 
-- You may have to pick a different port for the `simple-web` server if you are already using port `5000` on your host. You can change the port in the `docker-compose.yaml` file and change it. But Flask is configured to run on port `5000` by default, so you will need to change the port in the `docker-compose.yaml` file to `5001:5000` if you want to run it on port `5001` on your host.
+- You may have to pick a different port for the `simple-web` server if you are already using port `5000` on your host. You can change the port in the `docker-compose.yaml` file. But Flask is configured to run on port `5000` by default, so you will need to change the port in the `docker-compose.yaml` file to `5001:5000` if you want to run it on port `5001` on your host.
 
 - You can use Docker Desktop or the Docker CLI to find the information you need to update the configuration files. You will need the IP address of the `nginx` and `simple-web` servers to update the configuration files. 
 
