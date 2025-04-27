@@ -43,7 +43,6 @@ Up until now, we've created containers with a Dockerfile or directly from the co
 
 The `docker-compose.yaml` file is configured to create the `nginx` and `simple-web` containers, and the `lab` network. The `nginx` container is configured to use the bind mounts for the configuration and content files. The `simple-web` container is configured to use the `simple-web` image that we created in the previous lab. You can click on the arrow to expand the `docker-compose.yaml` file to see the configuration. The `docker-compose.yaml` file is found in this directory: `container-app-workshop/nginx/nginx/`.
 
-```yaml
 
 <details>
 <summary>docker-compose.yaml</summary>
@@ -103,7 +102,7 @@ Documentation for `docker-compose` can be found [here](https://docs.docker.com/c
 To start the containers, run the following command from the `container-app-workshop/nginx/nginx` directory:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 This command will create the `simple-web` and `nginx` containers, and the `lab` network. The `-d` command runs the containers in the background. You can verify that the containers are running by running the 
 ```
@@ -167,8 +166,8 @@ This command will show you the list of running containers. You should see the `s
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
 ```
-- Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `Hello, World!` message from the `simple-web` server. Change the port number to what you configured in the `docker-compose.yaml` file if you changed it.
-- Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should see the `You're home now!` message from the `simple-web` server.
+- Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server. Change the port number to what you configured in the `docker-compose.yaml` file if you changed it.
+- Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should see the `Hello-world` message from the `simple-web` server.
 
 :white_check_mark: Now that we know that the `simple-web` server is running, we can test the `nginx` server.
 
@@ -192,7 +191,7 @@ We used the bind mounts for this very reason. You can update the files on your h
 - Restart the `nginx` server to pick up the changes.
 
 
-Restart the `nginx` server by running the following command from the `container-app-workshop/nginx/nginx` directory:
+Restart the `nginx` server by running the following command:
 
 ```
 docker restart nginx
