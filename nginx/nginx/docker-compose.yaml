@@ -1,4 +1,4 @@
-name: nginx
+name: nginx-lab
 services:
     nginx:
         image: nginx
@@ -16,10 +16,20 @@ services:
               source: /var/nginx/conf
               target: /etc/nginx/conf.d
               read_only: true
+        ports:
+            - "80:80"
+        networks:
+           - lab
+    simple-web:
+        image: simple-web
+        container_name: simple-web
+        ports:
+            - "5000:5000"
         networks:
             - lab
 
 networks:
-    lab:
-        external: false
-        name: lab
+   lab:
+      external: false
+      driver: bridge
+      name: lab  
