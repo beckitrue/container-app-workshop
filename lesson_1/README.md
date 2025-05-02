@@ -30,15 +30,12 @@ This will build the container image from the instructions in the Dockerfile, and
 
 <details>
 <summary>Click to see the Dockerfile</summary>
-```dockerfile
   FROM python:3.11.4-slim-buster
   WORKDIR /flask-simple-app
   COPY requirements.txt requirements.txt
   COPY app.py app.py
   RUN pip3 install -r requirements.txt
   CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
-
-```dockerfile
 </details>
 
 The Dockerfile instructs the build process to:
