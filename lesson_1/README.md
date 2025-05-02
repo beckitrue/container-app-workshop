@@ -8,16 +8,16 @@ The `simple-web` container uses Flask to serve two routes:
 - `/` - returns "You're home now!"
 - `/hello-world` - returns "Hello, World!"
 
-We'll use these routes to test our `nginx` reverse proxy.
+We'll use these routes to test our `nginx` reverse proxy in our next lab.
 
 
 ## Building the `simple-web` container
 
-There is no need to change any of the files in the `simple-web` directory. 
+There is no need to change any of the files in the `lesson_1` directory. 
 
 ### Build the container image
 
-- Change to the `simple-web` directory (assumes you've cloned this repository to your local machine).
+- Change to the `lesson_1` directory (assumes you've cloned this repository to your local machine).
 - Run the following command to build the container image:
 
 ```
@@ -27,6 +27,19 @@ docker build -t simple-web:latest .
 #### What does this command do?
 
 This will build the container image from the instructions in the Dockerfile, and tag it as `simple-web:latest`
+
+<details>
+<summary>Click to see the Dockerfile</summary>
+```dockerfile
+  FROM python:3.11.4-slim-buster
+  WORKDIR /flask-simple-app
+  COPY requirements.txt requirements.txt
+  COPY app.py app.py
+  RUN pip3 install -r requirements.txt
+  CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+
+```dockerfile
+</details>
 
 The Dockerfile instructs the build process to:
 - Use the `python:3.10.0-slim-buster` image as the base image
