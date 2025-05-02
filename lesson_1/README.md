@@ -41,7 +41,7 @@ This will build the container image from the instructions in the Dockerfile, and
 </details>
 
 The Dockerfile instructs the build process to:
-- Use the `python:3.10.0-slim-buster` image as the base image
+- Use the `python:3.11.4-slim-buster` image as the base image
 - Copy the `requirements.txt` file to the image
 - Copy the `app.py` file to the image
 - Install the Python packages listed in the `requirements.txt` file (Flask)
@@ -66,7 +66,7 @@ docker ps
 This command will show you the list of running containers. It won't be there since we didn't start it yet. 
 
 ```
-docker run -name simple-web -d -p 5000:5000 simple-web:latest
+docker run --name simple-web -d -p 5000:5000 simple-web:latest
 ```
 This command will start the `simple-web` container in detached mode (`-d`) and map port `5000` on the host to port `5000` on the container. The `-name` flag gives the container a name of `simple-web`. The `-p` flag maps the host port to the container port. The last argument is the name of the image to run.
 
@@ -83,13 +83,40 @@ You should see the `simple-web` container running now. Re-run the `docker ps` co
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
 ```
-- Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server. Change the port number to what you configured in the `docker-compose.yaml` file if you changed it.
-- Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should see the `Hello-world` message from the `simple-web` server.
+- Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server, but your browser will warn you that it's not secure. That's why we will configure a `nginx` server in the next lab. 
 
-:white_check_mark: Now that we know that the `simple-web` server is running, we can test the `nginx` server.
+If you get a port conflict, change your run command to use an open port like `-p 5050:5000` Change the port number in your browser to what you configured it to in the `docker run` command if you changed it.
+
+- Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should also see a warning from your browser. That will be fixed in our next lab when we configure the `nginx` server.
+
+:white_check_mark: Now that we know that the `simple-web` server is running, we can move onto the next lab and confgire a `nginx` server to reverse proxy the `simple-web` server.
 
 ## What Next?
 
 Now that you have the `simple-web` container image, we will use it in the the next lesson as a target for the `nginx` container to test the reverse proxy. In our [next step](../nginx), we will build the `nginx` container image and run it with the `simple-web` container using Docker Compose.
 
+## Why is this important?
 
+You configured a simple web server that does not have any security. This is a good example of a web server that you would not want to expose to the internet. In the next lab, we will configure an `nginx` server to reverse proxy the `simple-web` server and add security to it. The `nginx` server will be the only server exposed to the internet, and it will handle all of the security for the `simple-web` server.
+
+## Clean up
+
+When you are done with the `simple-web` container, you can stop and remove it by running the following commands:
+
+```
+docker stop simple-web
+docker rm simple-web
+```
+This will stop and remove the `simple-web` container. You can also remove the image by running the following command:
+
+```
+docker rmi simple-web:latest
+```
+This will remove the `simple-web` image from your local machine. You can also remove all stopped containers and unused images by running the following command:
+
+```
+docker system prune
+```
+This will remove all stopped containers and unused images from your local machine. Be careful with this command, as it will remove all stopped containers and unused images, not just the `simple-web` container.
+
+Now we are ready to move on to the next lab and use `docker-compose` to configure the `nginx` server to reverse proxy the `simple-web` server.
