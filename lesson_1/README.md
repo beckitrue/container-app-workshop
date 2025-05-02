@@ -44,8 +44,32 @@ docker images
 ``` 
 and looking for the `simple-web` image.
 
+## How do I know the simple-web server is running?
+
+You can verify that the `simple-web` server is running by running the following command:
+
+```
+docker ps
+``` 
+This command will show you the list of running containers. You should see the `simple-web` container running.
+
+:white_check_mark: You should see the `simple-web` container running. The `simple-web` container should be listening on port `5000`, and the `nginx` container should be listening on port `80`.
+
+### Test the simple-web server from the browser
+
+- Run the following command to get the IP address of the `simple-web` container:
+
+```
+docker inspect \
+  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
+```
+- Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server. Change the port number to what you configured in the `docker-compose.yaml` file if you changed it.
+- Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should see the `Hello-world` message from the `simple-web` server.
+
+:white_check_mark: Now that we know that the `simple-web` server is running, we can test the `nginx` server.
+
 ## What Next?
 
-Now that you have the `simple-web` container image, we will use it in the `nginx` container to test the reverse proxy. In our [next step](../nginx), we will build the `nginx` container image and run it with the `simple-web` container using Docker Compose.
+Now that you have the `simple-web` container image, we will use it in the the next lesson as a target for the `nginx` container to test the reverse proxy. In our [next step](../nginx), we will build the `nginx` container image and run it with the `simple-web` container using Docker Compose.
 
 
