@@ -30,12 +30,14 @@ This will build the container image from the instructions in the Dockerfile, and
 
 <details>
 <summary>Click to see the Dockerfile</summary>
+  <pre><code>
   FROM python:3.11.4-slim-buster
   WORKDIR /flask-simple-app
   COPY requirements.txt requirements.txt
   COPY app.py app.py
   RUN pip3 install -r requirements.txt
   CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+  </code></pre>
 </details>
 
 The Dockerfile instructs the build process to:
@@ -50,7 +52,7 @@ The Dockerfile instructs the build process to:
 :white_check_mark: You can verify that the image was built by running the following command:
 
 ```
-docker images
+docker images | grep simple-web
 ``` 
 and looking for the `simple-web` image.
 
@@ -61,7 +63,15 @@ You can verify that the `simple-web` server is running by running the following 
 ```
 docker ps
 ``` 
-This command will show you the list of running containers. You should see the `simple-web` container running.
+This command will show you the list of running containers. It won't be there since we didn't start it yet. 
+
+```
+docker run -name simple-web -d -p 5000:5000 simple-web:latest
+```
+This command will start the `simple-web` container in detached mode (`-d`) and map port `5000` on the host to port `5000` on the container. The `-name` flag gives the container a name of `simple-web`. The `-p` flag maps the host port to the container port. The last argument is the name of the image to run.
+
+You should see the `simple-web` container running now. Re-run the `docker ps` command to see the list of running containers. You should see the `simple-web` container in the list.
+
 
 :white_check_mark: You should see the `simple-web` container running. The `simple-web` container should be listening on port `5000`, and the `nginx` container should be listening on port `80`.
 
