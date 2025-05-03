@@ -2,7 +2,7 @@
 
 In this lab we are going to configure a `nginx` server as a reverse proxy. The `nginx` server will run in a network called `lab` and will listen on port `80`. It will forward the requests to the `flask` server running on port `5000`, that is also running in the `lab` network.
 
-<img src="../images/nginx-diagram.png" alt="nginx reverse proxy diagram" width="600"/>
+<img src="images/nginx-diagram.png" alt="nginx reverse proxy diagram" width="600"/>
 
 ## What are we doing?
 
