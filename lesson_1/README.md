@@ -49,13 +49,13 @@ The Dockerfile instructs the build process to:
 
 #### How do I know the image was built?
 
-:white_check_mark: You can verify that the image was built by running the following command:
+:white_check_mark: You can verify that the image was built by running the following command where you should see the `simple-web` image in the list of images:
 
 ```
 docker images | grep simple-web
 ``` 
 
-and looking for the `simple-web` image.
+### Start the container
 
 Start the `simple-web` container by running the following command: 
 
@@ -63,7 +63,10 @@ Start the `simple-web` container by running the following command:
 docker run --name simple-web -d -p 5000:5000 simple-web:latest
 ```
 
-This command will start the `simple-web` container in detached mode (`-d`) and map port `5000` on the host to port `5000` on the container. The `-name` flag gives the container a name of `simple-web`. The `-p` flag maps the host port to the container port. The last argument is the name of the image to run.
+This command will start the `simple-web` container in detached mode (`-d`) and map port `5000` on the host (your computer) to port `5000` on the container. The `-name` flag gives the container a name of `simple-web`. The `-p` flag maps the host port to the container port. The last argument is the name of the image to run.
+
+If you get a port conflict, it means that there is something already using port `5000` on your computer. Change your `run` command to use an open port like `-p 5050:5000`. That maps port `5000` on the container to port `5050` on your computer. Later, when you test the container, remember to change the port number in your browser to what you configured it to in the `docker run` command.
+
 
 ## How do I know the simple-web server is running?
 
@@ -73,10 +76,7 @@ You can verify that the `simple-web` server is running by running the following 
 docker ps
 ```
 
-You should see the `simple-web` container running now. Re-run the `docker ps` command to see the list of running containers. You should see the `simple-web` container in the list.
-
-
-:white_check_mark: You should see the `simple-web` container running. The `simple-web` container should be listening on port `5000`, and the `nginx` container should be listening on port `80`.
+:white_check_mark: You should see the `simple-web` container running. The `simple-web` container should be listening on port `5000` (or whatever you configured above).
 
 ### Test the simple-web server from the browser
 
@@ -88,8 +88,6 @@ docker inspect \
 ```
 
 - Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server, but your browser will warn you that it's not secure. That's why we will configure a `nginx` server in the next lab. 
-
-If you get a port conflict, change your run command to use an open port like `-p 5050:5000` Change the port number in your browser to what you configured it to in the `docker run` command if you changed it.
 
 - Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should also see a warning from your browser. That will be fixed in our next lab when we configure the `nginx` server.
 
@@ -111,7 +109,7 @@ Now that you have the `simple-web` container image, we will use it in the the ne
 - You learned how to use the `docker ps` command to see running containers.
 - You learned that the `simple-web` server is not secure and should not be exposed to the internet.
 
-You configured a simple web server that does not have any security. This is a good example of a web server that you would not want to expose to the internet. In the next lab, we will configure an `nginx` server to reverse proxy the `simple-web` server and add security to it. The `nginx` server will be the only server exposed to the internet, and it will handle all of the security for the `simple-web` server.
+This is a good example of a web server that you would not want to expose to the internet. Fortunately, there are ways that we can secure access for services like this. In the next lab, we will configure an `nginx` server to reverse proxy the `simple-web` server and add security to it. The `nginx` server will be the only server exposed to the internet, and it will handle all of the security for the `simple-web` server.
 
 ## Clean up
 
