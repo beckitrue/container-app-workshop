@@ -110,7 +110,7 @@ Documentation for `docker-compose` can be found [here](https://docs.docker.com/c
 
 ## Remember our bind mounts
 
-Remember that we are using bind mounts for the configuration and content files. Update the IP address in the `default.conf` file and the `index.html` file to match the IP address of your `simple-web` server.
+Remember that we are using bind mounts for the configuration and content files. Let's create the directories on our computer and copy the files to them. We will update the IP address in the `default.conf` file and the `index.html` file to match the IP address of your `simple-web` server in a later step.
 
 - create the `/var/nginx/conf/` directory on your host
 - copy the `default.conf` file from the `nginx` directory to `/var/nginx/conf/`
@@ -156,10 +156,6 @@ docker inspect \
 #### Get the IP address of both the `nginx` and `simple-web` servers. You will need this information later to update the configuration files.
 
 
-```
-docker restart nginx
-```
-
 ## Testing the servers
 
 It's always a good idea to test that things are working as expected. So let's test the `simple-web` server first.
@@ -191,7 +187,6 @@ We used the bind mounts for this very reason. You can edit and update the files 
 
 ### Update the configuration files
 
-- Make sure the links in the `index.html` file match the IP address of your `simple-web` server. 
 - Update the links in your `/var/www/index.html` file and the address in the `/var/nginx/default.conf` file to match the IP address of your `simple-web` server.
 - Restart the `nginx` server to pick up the changes.
 
