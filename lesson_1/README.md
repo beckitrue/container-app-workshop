@@ -54,7 +54,16 @@ The Dockerfile instructs the build process to:
 ```
 docker images | grep simple-web
 ``` 
+
 and looking for the `simple-web` image.
+
+Start the `simple-web` container by running the following command: 
+
+```
+docker run --name simple-web -d -p 5000:5000 simple-web:latest
+```
+
+This command will start the `simple-web` container in detached mode (`-d`) and map port `5000` on the host to port `5000` on the container. The `-name` flag gives the container a name of `simple-web`. The `-p` flag maps the host port to the container port. The last argument is the name of the image to run.
 
 ## How do I know the simple-web server is running?
 
@@ -62,13 +71,7 @@ You can verify that the `simple-web` server is running by running the following 
 
 ```
 docker ps
-``` 
-This command will show you the list of running containers. It won't be there since we didn't start it yet. 
-
 ```
-docker run --name simple-web -d -p 5000:5000 simple-web:latest
-```
-This command will start the `simple-web` container in detached mode (`-d`) and map port `5000` on the host to port `5000` on the container. The `-name` flag gives the container a name of `simple-web`. The `-p` flag maps the host port to the container port. The last argument is the name of the image to run.
 
 You should see the `simple-web` container running now. Re-run the `docker ps` command to see the list of running containers. You should see the `simple-web` container in the list.
 
@@ -83,6 +86,7 @@ You should see the `simple-web` container running now. Re-run the `docker ps` co
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
 ```
+
 - Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server, but your browser will warn you that it's not secure. That's why we will configure a `nginx` server in the next lab. 
 
 If you get a port conflict, change your run command to use an open port like `-p 5050:5000` Change the port number in your browser to what you configured it to in the `docker run` command if you changed it.
@@ -95,7 +99,17 @@ If you get a port conflict, change your run command to use an open port like `-p
 
 Now that you have the `simple-web` container image, we will use it in the the next lesson as a target for the `nginx` container to test the reverse proxy. In our [next step](../nginx), we will build the `nginx` container image and run it with the `simple-web` container using Docker Compose.
 
+:white_check_mark: Test your understanding of how a Dockerfile works by modifying the `Dockerfile` to use a different base image. You can use any of the official Python images from [Docker Hub](https://hub.docker.com/_/python). For example, you can use `python:3.11.4-alpine` as the base image. This will create a smaller image, but it may require some changes to the `requirements.txt` file to work with Alpine Linux. 
+
 ## Why is this important?
+
+- You learned how to build a Docker image from a Dockerfile.
+- You learned how to run a Docker container from an image.
+- You learned how to map ports from the host to the container.
+- You learned how to test a web server running in a Docker container.
+- You learned how to inspect a Docker container to get its IP address.
+- You learned how to use the `docker ps` command to see running containers.
+- You learned that the `simple-web` server is not secure and should not be exposed to the internet.
 
 You configured a simple web server that does not have any security. This is a good example of a web server that you would not want to expose to the internet. In the next lab, we will configure an `nginx` server to reverse proxy the `simple-web` server and add security to it. The `nginx` server will be the only server exposed to the internet, and it will handle all of the security for the `simple-web` server.
 
