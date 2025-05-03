@@ -19,7 +19,7 @@ If you don't see the `simple-web` image, you can build it by running the followi
 docker build -t simple-web .
 ```
 
-This command will build the `simple-web` image and tag it as `simple-web`. You can verify that the image was created by running the `docker images` command again. Remember to return to the `nginx` directory to run the commands in this lab.
+This command will build the `simple-web` image and tag it as `simple-web`. You can verify that the image was created by running the `docker images` command again. Remember to return to the `lesson_2` directory to run the commands in this lab.
 
 ### nginx Configuration file
 
@@ -227,7 +227,6 @@ You can use the following command to rebuild the `nginx` container after you mak
 - You learned how to use the `docker restart` command to restart a container.
 - You learned how to use the `docker network inspect` command to get more information about the network.
 - You learned how to use the `docker-compose up --build` command to rebuild the containers after you make changes to the `docker-compose.yaml` file.
-- You learned hwo to use a bind mouunt to update the configuration and content files on your host.
 
 ## Summary
 
