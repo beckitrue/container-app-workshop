@@ -1,6 +1,6 @@
 # README
 
-In this lab we are going to configure a `nginx` server as a reverse proxy. The `nginx` server will run in a network called `lab` and will listen on port `80`. It will forward the requests to the `flask` server running on port `5000`, that is also running in the `lab` network.
+In this lab we are going to configure a `nginx` server as a reverse proxy. The `nginx` server will run in a network called `lab` and will listen on port `80`. It will forward the requests to the `flask` server running on port `5000`, that is also running in the `lab` network. The diagram below shows the configuration of the `nginx` server and the `flask` server, and how they are connected.
 
 <img src="images/nginx-diagram.png" alt="nginx reverse proxy diagram" width="600"/>
 
@@ -8,7 +8,7 @@ In this lab we are going to configure a `nginx` server as a reverse proxy. The `
 
 The `nginx` reverse proxy server is configured by its configuration file. The configuration file is located at `/etc/nginx/nginx.conf` on the container, but we are using a bind mount to `/var/nginx/conf/default.conf`.  This allows us to modify the configuration file on the host and the changes will be reflected in the container.
 
-We're assuming you've already created the `simple-web` container image. If you haven't, please refer to the [simple-web](../simple-web/README.md) lab for instructions on how to create the `simple-web` container image.
+You will need to have the `simple-web` container image please refer to the [simple-web](../lesson_1/README.md) lab for instructions on how to create the `simple-web` container image.
 
 ### nginx Configuration file
 
@@ -39,7 +39,7 @@ We are using the bind mount for the content file for the same reason we are usin
 
 ## Docker Compose
 
-Up until now, we've created containers with a Dockerfile or directly from the command line. In this step, we are going to use `docker-compose` to create everything we need for the containers.
+Up until now, we've created containers with a Dockerfile or directly from the command line. In this step, we are going to use `docker-compose` to create everything we need for the containers. This makes deployment easier, more manageable, and repeatable.
 
 The `docker-compose.yaml` file is configured to create the `nginx` and `simple-web` containers, and the `lab` network. The `nginx` container is configured to use the bind mounts for the configuration and content files. The `simple-web` container is configured to use the `simple-web` image that we created in the previous lab. You can click on the arrow to expand the `docker-compose.yaml` file to see the configuration. The `docker-compose.yaml` file is found in this directory: `container-app-workshop/nginx/nginx/`.
 
@@ -207,6 +207,12 @@ Whew! That was a lot of work. But you did it! You configured an `nginx` server a
 
 :white_check_mark: [Chainguard](https://chainguard.dev) provides a secure `nginx` [image that is built from scratch](https://console.chainguard.dev/org/welcome/images/public/image/nginx/versions). You can use this image to test your understanding of how to use `docker-compose` to change the container image.
 
+You can use the following command to rebuild the `nginx` container with the Chainguard image:
+
+```
+- docker-compose up --build --remove-orphans --force-recreate -d
+```
+
 ## Why is this important?
 
 - You learned how to configure a reverse proxy using `nginx` and how to use bind mounts to update the configuration and content files on your host.
@@ -215,6 +221,17 @@ Whew! That was a lot of work. But you did it! You configured an `nginx` server a
 - You learned how to use the `docker ps` command to check the status of the containers.
 - You learned how to use the `docker restart` command to restart a container.
 - You learned how to use the `docker network inspect` command to get more information about the network.
+
+## Summary
+
+At this point it should be clear to you that there are several layers of abstraction when it comes to containers:
+
+- You have the container image, the container, the network, and the host. 
+- You have host ports and container ports. 
+- You have virtal networks and IP addresses. 
+- You have bind mounts and volumes.
+
+You can use these layers to create a secure and isolated environment for your applications, but it can be confusing at first. It definitely helps to have a diagram to help you understand how everything fits together, so if you get confused, create a diagram to help you understand the relationships between the different components.
 
 ## Next Steps
 
