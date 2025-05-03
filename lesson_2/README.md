@@ -137,9 +137,9 @@ docker inspect \
 Remember that we are using bind mounts for the configuration and content files. Update the IP address in the `default.conf` file and the `index.html` file to match the IP address of your `simple-web` server.
 
 - create the `/var/nginx/conf/` directory on your host
-- copy the `default.conf` file from the nginx directory to `/var/nginx/conf/`
+- copy the `default.conf` file from the `nginx` directory to `/var/nginx/conf/`
 - create the `/var/www/` directory on your host
-- copy the `index.html` file from the nginx directory to `/var/www/`
+- copy the `index.html` file from the `nginx` directory to `/var/www/`
 
 Now our files are in place to configure the `nginx` server, but we have to restart the `nginx` server to pick up the changes.
 
@@ -181,7 +181,7 @@ To test the `nginx` server, open a browser and navigate to `http://<IP address o
 
 It might not work because the IP addresses in the `default.conf` file and the `index.html` file are hardcoded. You will need to update the IP addresses in these files to match the IP address of your `simple-web` server.
 
-We used the bind mounts for this very reason. You can update the files on your host and the changes will be reflected in the container.
+We used the bind mounts for this very reason. You can edit and update the files on your computer and the changes will be reflected in the container.
 
 ### Update the configuration files
 
@@ -201,12 +201,22 @@ docker restart nginx
 
 :white_check_mark: You should see the `You're home now!` message from the `simple-web/` link.and the `Hello, World!` message from the `simple-web/hello-world` link.
 
-## Conclusion
-
 Whew! That was a lot of work. But you did it! You configured an `nginx` server as a reverse proxy to a `flask` server. You used bind mounts to update the configuration and content files on your host.
 
-You also learned about networking in Docker and how to get the IP address of a container.
+## What Next?
 
-And you were introduced to `docker-compose` and how to use it to create containers. 
+:white_check_mark: [Chainguard](https://chainguard.dev) provides a secure `nginx` [image that is built from scratch](https://console.chainguard.dev/org/welcome/images/public/image/nginx/versions). You can use this image to test your understanding of how to use `docker-compose` to change the container image.
 
-In the next lab, we will learn about [cloudflare tunnels](https://www.cloudflare.com/products/tunnel/) and how to use them to expose your local servers to the internet. This will allow you to test your applications from anywhere in the world without having to expose your local network to the internet. 
+## Why is this important?
+
+- You learned how to configure a reverse proxy using `nginx` and how to use bind mounts to update the configuration and content files on your host.
+- You learned how to use `docker-compose` to create containers and networks.
+- You learned how to use the `docker inspect` command to get the IP address of a container.
+- You learned how to use the `docker ps` command to check the status of the containers.
+- You learned how to use the `docker restart` command to restart a container.
+- You learned how to use the `docker network inspect` command to get more information about the network.
+
+## Next Steps
+
+In the next lesson, we will learn how to use a container to test connections between containers. 
+
