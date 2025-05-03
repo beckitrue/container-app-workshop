@@ -13,7 +13,7 @@ You will need to have the `simple-web` container image. Remember, you can check 
 ```
 docker images
 ```
-If you don't see the `simple-web` image, you can build it by running the following command from the `container-app-workshop/simple-web` directory:
+If you don't see the `simple-web` image, you can build it by running the following command from the `container-app-workshop/lesson_1` directory:
 
 ```
 docker build -t simple-web .
