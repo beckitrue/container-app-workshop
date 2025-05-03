@@ -8,7 +8,18 @@ In this lab we are going to configure a `nginx` server as a reverse proxy. The `
 
 The `nginx` reverse proxy server is configured by its configuration file. The configuration file is located at `/etc/nginx/nginx.conf` on the container, but we are using a bind mount to `/var/nginx/conf/default.conf`.  This allows us to modify the configuration file on the host and the changes will be reflected in the container.
 
-You will need to have the `simple-web` container image please refer to the [simple-web](../lesson_1/README.md) lab for instructions on how to create the `simple-web` container image.
+You will need to have the `simple-web` container image. Remember, you can check if the `simple-web` image is available by running the following command:
+
+```
+docker images
+```
+If you don't see the `simple-web` image, you can build it by running the following command from the `container-app-workshop/simple-web` directory:
+
+```
+docker build -t simple-web .
+```
+
+This command will build the `simple-web` image and tag it as `simple-web`. You can verify that the image was created by running the `docker images` command again. Remember to return to the `nginx` directory to run the commands in this lab.
 
 ### nginx Configuration file
 
