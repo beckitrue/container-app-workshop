@@ -52,7 +52,7 @@ We are using the bind mount for the content file for the same reason we are usin
 
 Up until now, we've created containers with a Dockerfile or directly from the command line. In this step, we are going to use `docker-compose` to create everything we need for the containers. This makes deployment easier, more manageable, and repeatable.
 
-The `docker-compose.yaml` file is configured to create the `nginx` and `simple-web` containers, and the `lab` network. The `nginx` container is configured to use the bind mounts for the configuration and content files. The `simple-web` container is configured to use the `simple-web` image that we created in the previous lab. You can click on the arrow to expand the `docker-compose.yaml` file to see the configuration. The `docker-compose.yaml` file is found in this directory: `container-app-workshop/nginx/nginx/`.
+The `docker-compose.yaml` file is configured to create the `nginx` and `simple-web` containers, and the `lab` network. The `nginx` container is configured to use the bind mounts for the configuration and content files. The `simple-web` container is configured to use the `simple-web` image that we created in the previous lab. You can click on the arrow to expand the `docker-compose.yaml` file to see the configuration. The `docker-compose.yaml` file is found in this directory: `container-app-workshop/lesson_2/`.
 
 
 <details>
@@ -108,42 +108,7 @@ Documentation for `docker-compose` can be found [here](https://docs.docker.com/c
 
 - The instructions below will show you how to get the IP address of the containers using the Docker CLI.
 
-## Start the containers
-
-To start the containers, run the following command from the `container-app-workshop/nginx/nginx` directory:
-
-```
-docker compose up -d
-```
-This command will create the `simple-web` and `nginx` containers, and the `lab` network. The `-d` command runs the containers in the background. You can verify that the containers are running by running the 
-```
-docker ps
-``` 
-command and checking the status of the `nginx` and `simple-web` containers.
-
-:white_check_mark: You should see the `nginx` and `simple-web` containers running. The `nginx` container should be listening on port `80`, and the `simple-web` container should be listening on port `5000`.
-
-
-## Networking 
-
-You can use the 
-```
-docker network inspect lab 
-``` 
-command to get more information about the network, including the containers that are connected to it.
-
-### Get the IP address of the containers
-
-To get the IP address of the `simple-web` contianer, you can run the 
-```
-docker inspect \
-  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
-```
-
-#### Get the IP address of both the `nginx` and `simple-web` servers. You will need this information later to update the configuration files.
-
-
-### Remember our bind mounts
+## Remember our bind mounts
 
 Remember that we are using bind mounts for the configuration and content files. Update the IP address in the `default.conf` file and the `index.html` file to match the IP address of your `simple-web` server.
 
@@ -154,20 +119,50 @@ Remember that we are using bind mounts for the configuration and content files. 
 
 Now our files are in place to configure the `nginx` server, but we have to restart the `nginx` server to pick up the changes.
 
+## Start the containers
+
+To start the containers, run the following command from the `container-app-workshop/lesson_2` directory:
+
 ```
-docker restart nginx
+docker compose up -d
 ```
 
-### How do I know the simple-web server is running?
+### How do I know the simple-web and nginx servers are running?
 
-You can verify that the `simple-web` server is running by running the following command:
+You can verify that the `simple-web` and `nginx` servers are running by running the following command:
 
 ```
 docker ps
 ``` 
-This command will show you the list of running containers. You should see the `simple-web` container running.
 
-:white_check_mark: You should see the `simple-web` container running. The `simple-web` container should be listening on port `5000`, and the `nginx` container should be listening on port `80`.
+:white_check_mark: You should see the containers are running. The `simple-web` container should be listening on port `5000`, and the `nginx` container should be listening on port `80`.
+
+
+## Networking 
+
+You can use the following command to see the networks that are created by `docker-compose`:
+```
+docker network inspect lab 
+``` 
+
+### Get the IP address of the containers
+
+To get the IP address of the `simple-web` contianer, run the following command:
+```
+docker inspect \
+  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
+```
+
+#### Get the IP address of both the `nginx` and `simple-web` servers. You will need this information later to update the configuration files.
+
+
+```
+docker restart nginx
+```
+
+## Testing the servers
+
+It's always a good idea to test that things are working as expected. So let's test the `simple-web` server first.
 
 ### Test the simple-web server from the browser
 
@@ -197,8 +192,7 @@ We used the bind mounts for this very reason. You can edit and update the files 
 ### Update the configuration files
 
 - Make sure the links in the `index.html` file match the IP address of your `simple-web` server. 
-- Update the links in your `index.html` file and the address in the `default.conf` file to match the IP address of your `simple-web` server.
-- Copy the files to the `/var/nginx/conf/` and `/var/nginx/html/` directories on your host. 
+- Update the links in your `/var/www/index.html` file and the address in the `/var/nginx/default.conf` file to match the IP address of your `simple-web` server.
 - Restart the `nginx` server to pick up the changes.
 
 
@@ -218,7 +212,7 @@ Whew! That was a lot of work. But you did it! You configured an `nginx` server a
 
 :white_check_mark: [Chainguard](https://chainguard.dev) provides a secure `nginx` [image that is built from scratch](https://console.chainguard.dev/org/welcome/images/public/image/nginx/versions). You can use this image to test your understanding of how to use `docker-compose` to change the container image.
 
-You can use the following command to rebuild the `nginx` container with the Chainguard image:
+You can use the following command to rebuild the `nginx` container after you make changes to the `docker-compose.yaml` file:
 
 ```
 - docker-compose up --build --remove-orphans --force-recreate -d
@@ -232,6 +226,8 @@ You can use the following command to rebuild the `nginx` container with the Chai
 - You learned how to use the `docker ps` command to check the status of the containers.
 - You learned how to use the `docker restart` command to restart a container.
 - You learned how to use the `docker network inspect` command to get more information about the network.
+- You learned how to use the `docker-compose up --build` command to rebuild the containers after you make changes to the `docker-compose.yaml` file.
+- You learned hwo to use a bind mouunt to update the configuration and content files on your host.
 
 ## Summary
 
