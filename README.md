@@ -39,9 +39,9 @@ installation instructions for Docker:
 ### Part 2: Securing Access to Your Application
 - Lab 4 is an introduction to Cloudflare tunnels running in a container and connecting it to our nginx container created in the previous lab. You will learn how to create a Cloudflare tunnel, configure it to connect to the nginx container, and access the application from the internet.
 - Lab 5 is an introduction to authentication and authorization using OIDC. You will learn how to use OIDC to authenticate users and authorize access to the application running in the container. You will also learn how to use a reverse proxy to secure the application and control access to it.
-- Lab 6 is an introduction to minimal containers and how to use them to reduce the attack surface of your application. You will learn how to create a minimal container image using Chainguard images and how to scan for vulnerabilities in the image.
 ---
 ### Part 3: Building and Deploying Your Application
+- Lab 6 is an introduction to minimal containers and how to use them to reduce the attack surface of your application. You will learn how to create a minimal container image using Chainguard images and how to scan for vulnerabilities in the image.
 - Lab 7 is an introduction to using GitHub Actions to automate the build and deployment of your containerized application. You will learn how to create a GitHub Actions workflow, build the image, and deploy it to a container registry.
 - Lab 8 is an introduction to using Claude and MCP servers to build and deploy your application. 
 
