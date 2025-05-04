@@ -20,7 +20,7 @@ There is no need to change any of the files in the `lesson_1` directory.
 - Change to the `lesson_1` directory (assumes you've cloned this repository to your local machine).
 - Run the following command to build the container image:
 
-```
+```bash
 docker build -t simple-web:latest .
 ```
 
@@ -51,7 +51,7 @@ The Dockerfile instructs the build process to:
 
 :white_check_mark: You can verify that the image was built by running the following command where you should see the `simple-web` image in the list of images:
 
-```
+```bash
 docker images | grep simple-web
 ``` 
 
@@ -59,7 +59,7 @@ docker images | grep simple-web
 
 Start the `simple-web` container by running the following command: 
 
-```
+```bash
 docker run --name simple-web -d -p 5000:5000 simple-web:latest
 ```
 
@@ -72,7 +72,7 @@ If you get a port conflict, it means that there is something already using port 
 
 You can verify that the `simple-web` server is running by running the following command:
 
-```
+```bash
 docker ps
 ```
 
@@ -82,7 +82,7 @@ docker ps
 
 - Run the following command to get the IP address of the `simple-web` container:
 
-```
+```bash
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
 ```
@@ -115,18 +115,18 @@ This is a good example of a web server that you would not want to expose to the 
 
 When you are done with the `simple-web` container, you can stop and remove it by running the following commands:
 
-```
+```bash
 docker stop simple-web
 docker rm simple-web
 ```
 This will stop and remove the `simple-web` container. You can also remove the image by running the following command:
 
-```
+```bash
 docker rmi simple-web:latest
 ```
 This will remove the `simple-web` image from your local machine. You can also remove all stopped containers and unused images by running the following command:
 
-```
+```bash
 docker system prune
 ```
 This will remove all stopped containers and unused images from your local machine. Be careful with this command, as it will remove all stopped containers and unused images, not just the `simple-web` container.
