@@ -10,12 +10,12 @@ The `nginx` reverse proxy server is configured by its configuration file. The co
 
 You will need to have the `simple-web` container image. Remember, you can check if the `simple-web` image is available by running the following command:
 
-```
+```bash
 docker images
 ```
 If you don't see the `simple-web` image, you can build it by running the following command from the `container-app-workshop/lesson_1` directory:
 
-```
+```bash
 docker build -t simple-web .
 ```
 
@@ -123,7 +123,7 @@ Now our files are in place to configure the `nginx` server, but we have to resta
 
 To start the containers, run the following command from the `container-app-workshop/lesson_2` directory:
 
-```
+```bash
 docker compose up -d
 ```
 
@@ -131,7 +131,7 @@ docker compose up -d
 
 You can verify that the `simple-web` and `nginx` servers are running by running the following command:
 
-```
+```bash
 docker ps
 ``` 
 
@@ -141,14 +141,14 @@ docker ps
 ## Networking 
 
 You can use the following command to see the networks that are created by `docker-compose`:
-```
+```bash
 docker network inspect lab 
 ``` 
 
 ### Get the IP address of the containers
 
 To get the IP address of the `simple-web` contianer, run the following command:
-```
+```bash
 docker inspect \
   -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
 ```
@@ -169,7 +169,7 @@ We used the bind mounts for this very reason. You can edit and update the files 
 
 Restart the `nginx` server by running the following command:
 
-```
+```bash
 docker restart nginx
 ```
 
