@@ -47,13 +47,13 @@ You should have completed the previous lesson and have the `docker-compose.yaml`
 
 Assuming you have completed the pervious lesson, you should have the `simple-web` and `nginx` containers running. You can check the status of the containers by running the following command in the terminal:
 
-```
+```bash
 docker ps
 ```
 
 If they aren't running, you can start them by running the `docker compose up -d` command in the terminal. You will need to run it from the `lesson_2` directory or specifiy the directory as in the command below. This will start the containers and create the network.
 
-```
+```bash
 docker compose -f ../lesson_2/docker-compose.yaml up -d
 ```
 
@@ -122,8 +122,10 @@ nc -zv nginx 80
 
 You should see output similar to the following:
 
-```Connection to nginx 80 port [tcp/http] succeeded!
+```bash
+Connection to nginx 80 port [tcp/http] succeeded!
 ```
+
 If you see this message or one like it, it means that the `nginx` container is reachable and there are no network issues. If you do not see this message, it means that there is a network issue and you will need to troubleshoot the issue.
 
 #### Things to try if you don't get a response:
