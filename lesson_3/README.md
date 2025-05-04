@@ -43,7 +43,7 @@ All of the containers need to be running on the same virtual network. We will us
 
 ## Getting Started
 
-You should have completed the previous lesson and have the `docker-compose.yaml` file from that lesson. If you have not completed the previous lesson, please do so before continuing with this lesson.
+You should have completed the previous lesson and have the `docker-compose.yaml` file from that lesson. If you have not completed the [previous lesson](../lesson_2), please do so before continuing with this lesson.
 
 Assuming you have completed the pervious lesson, you should have the `simple-web` and `nginx` containers running. You can check the status of the containers by running the following command in the terminal:
 
@@ -231,3 +231,7 @@ You have learned many valuable tools to test the network connectivity between co
 - You learned to use the `docker-compose` file to create and manage the containers.
 - You learned to use the `docker-compose up -d` command to start the containers and create the network.
 - You learned to use the `docker-compose down` command to stop and remove the containers and the network.
+
+## What's next?
+
+In the next lesson, you will learn how to deploy and use a Cloudflare tunnel to expose your local web server to the internet. You will learn how to use the `cloudflared` container to create a tunnel to your local web server and expose it to the internet.
