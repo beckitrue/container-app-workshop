@@ -54,7 +54,7 @@ docker ps
 If they aren't running, you can start them by running the `docker compose up -d` command in the terminal. You will need to run it from the `lesson_2` directory or specifiy the directory as in the command below. This will start the containers and create the network.
 
 ```
-docker compose up -f ../lesson_2/docker-compose.yaml up -d
+docker compose -f ../lesson_2/docker-compose.yaml up -d
 ```
 
 Verify that the containers are running before continuing. 
