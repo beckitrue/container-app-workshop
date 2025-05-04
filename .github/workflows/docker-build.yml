@@ -1,14 +1,16 @@
-name: Docker Build
+name: Docker Build and Scan
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'lesson_1/**'
+      - 'lesson_1/Dokerfile'
+      - 'lesson_2/docker-compose.yml'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'lesson_1/**'
+      - 'lesson_1/Dockerfile'
+      - 'lesson_2/docker-compose.yml'  
   workflow_dispatch:
 
 jobs:
