@@ -155,33 +155,9 @@ docker inspect \
 
 #### Get the IP address of both the `nginx` and `simple-web` servers. You will need this information later to update the configuration files.
 
+### Update the nginx configuration files
 
-## Testing the servers
-
-It's always a good idea to test that things are working as expected. So let's test the `simple-web` server first.
-
-### Test the simple-web server from the browser
-
-- Run the following command to get the IP address of the `simple-web` container:
-
-```
-docker inspect \
-  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' simple-web
-```
-- Open a browser and navigate to `http://<IP address of your simple-web server>:5000`. You should see the `You're home now!` message from the `simple-web` server. Change the port number to what you configured in the `docker-compose.yaml` file if you changed it.
-- Now navigate to `http://<IP address of your simple-web server>:5000/hello-world`. You should see the `Hello-world` message from the `simple-web` server.
-
-:white_check_mark: Now that we know that the `simple-web` server is running, we can test the `nginx` server.
-
-
-## Testing the nginx server
-
-To test the `nginx` server, open a browser and navigate to `http://<IP address of your nginx server>`. You should see the `index.html` file that we created in the `nginx` content file. This file has links to the two routes of the `flask` server running in the `simple-web` container.
-
-
-### It might not work
-
-It might not work because the IP addresses in the `default.conf` file and the `index.html` file are hardcoded. You will need to update the IP addresses in these files to match the IP address of your `simple-web` server.
+The `default.conf` file and the `index.html` file are hardcoded. You will need to update the IP addresses in these files to match the IP address of your `simple-web` server.
 
 We used the bind mounts for this very reason. You can edit and update the files on your computer and the changes will be reflected in the container.
 
@@ -197,21 +173,12 @@ Restart the `nginx` server by running the following command:
 docker restart nginx
 ```
 
-:white_check_mark: Now open a browser tab and enter the address of your `nginx` server. For example `http://172.19.0.2`. You should see the `index.html` file with the links to the two routes of the `flask` server. Click on the links to test the routes.
-
-:white_check_mark: You should see the `You're home now!` message from the `simple-web/` link.and the `Hello, World!` message from the `simple-web/hello-world` link.
-
 Whew! That was a lot of work. But you did it! You configured an `nginx` server as a reverse proxy to a `flask` server. You used bind mounts to update the configuration and content files on your host.
 
 ## What Next?
 
-:white_check_mark: [Chainguard](https://chainguard.dev) provides a secure `nginx` [image that is built from scratch](https://console.chainguard.dev/org/welcome/images/public/image/nginx/versions). You can use this image to test your understanding of how to use `docker-compose` to change the container image.
+Now that you have the `nginx` server configured, and you have both containers running, it's time to test the configuration. In the next lesson, you will learn how to test the configuration and see if the `nginx` server is forwarding the requests to the `flask` server.
 
-You can use the following command to rebuild the `nginx` container after you make changes to the `docker-compose.yaml` file:
-
-```
-- docker-compose up --build --remove-orphans --force-recreate -d
-```
 
 ## Why is this important?
 
@@ -221,7 +188,6 @@ You can use the following command to rebuild the `nginx` container after you mak
 - You learned how to use the `docker ps` command to check the status of the containers.
 - You learned how to use the `docker restart` command to restart a container.
 - You learned how to use the `docker network inspect` command to get more information about the network.
-- You learned how to use the `docker-compose up --build` command to rebuild the containers after you make changes to the `docker-compose.yaml` file.
 
 ## Summary
 
@@ -232,9 +198,9 @@ At this point it should be clear to you that there are several layers of abstrac
 - You have virtal networks and IP addresses. 
 - You have bind mounts and volumes.
 
-You can use these layers to create a secure and isolated environment for your applications, but it can be confusing at first. It definitely helps to have a diagram to help you understand how everything fits together, so if you get confused, create a diagram to help you understand the relationships between the different components.
+You can use these layers to create a secure and isolated environment for your applications, but it can be confusing at first. It definitely helps to have a diagram to help you understand how everything fits together, so if you get confused, create a diagram to help you understand the relationships between the different components. We'll learn how to test the connections in the next lesson.
 
 ## Next Steps
 
-In the next lesson, we will learn how to use a container to test connections between containers. 
+In the [next lesson](../lesson_3), we will learn how to use a container to test connections between containers. 
 
