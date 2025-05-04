@@ -26,11 +26,12 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./lesson_1
+          load: true
           push: false
           tags: simple-web:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
+          
       # Add vulnerability scanning
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
