@@ -18,5 +18,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Comments: Add meaningful comments for complex logic
 - YAML: Use consistent indentation and follow Docker Compose schema
 
+## MCP Server Commands
+
+- Build MCP server: `docker build -t my-mcp-server .`
+- Run MCP container: `docker run -p 8080:8080 my-mcp-server`
+- Run with Docker socket: `docker run -v /var/run/docker.sock:/var/run/docker.sock my-mcp-server`
+- Access logs: `docker logs <container-id>`
+
+## MCP Security Best Practices
+
+- Use non-root users in containers
+- Set memory/CPU limits
+- Never use --privileged flag
+- Implement proper secrets management
+
+## MCP Deployment Patterns
+
+- Single-server: One MCP server per container
+- Gateway: Central MCP router to specialized servers
+- Sidecar: MCP server alongside main application
+
 ## Repository Structure
 This repository contains workshop materials for containerization labs including Dockerfiles, Docker Compose configs, and simple applications.
