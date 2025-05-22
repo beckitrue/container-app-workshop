@@ -1,6 +1,6 @@
 # README
 
-In this lesson, we will learn how to use MCP servers to create our Docker container from [lesson_1](../lesson_1). We're going to use Claude Desktop (a LLM client) to interact with the MCP servers. Claude Desktop is a paid application, but it is free to use for the first 30 days. You can use Claude Desktop to interact with the MCP servers and create Docker container. We could just as easily create a brand new container, but we're going to use the MCP servers to recreate the container from lesson_1. 
+In this lesson, we will learn how to use MCP servers to create our Docker container from [lesson_1](../lesson_1). We're going to use Claude Desktop (a LLM client) to interact with the MCP servers. Claude Desktop is a paid application, but it is free to use for the first 30 days. You can use Claude Desktop to interact with the MCP servers and create the Docker container. We could just as easily create a brand new container, but we're going to use the MCP servers to recreate the container from lesson_1. 
 
 MCP is a protocol that allows us to use LLMs to inteact with datasources and tools like Github, Docker, Google Search, and more. You can find more informtion about MCP in the [MCP documentation](https://modelcontextprotocol.io/introduction/).
 
@@ -74,3 +74,5 @@ Your `claude_desktop_config.json` file should look something like this for this 
 ``` text
 Use the files in github.com/beckitrue/container-app-workshop/lesson_1 repository to create a Docker container running a Flask server with the configuration found in the Dockerfile. The README.md file has directions to create the container.   You may need to delete an existing container  with the simple-web name on my computer". Read and approve the actions from Claude to create the container.
 ```
+
+:white_check_mark: You'll know this worked when you have a running container with the name `simple-web` and the Flask server is running. You can check this by going to `localhost:5000` in your web browser. You should see the Flask server running.
