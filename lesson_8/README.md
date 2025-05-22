@@ -76,3 +76,6 @@ Use the files in github.com/beckitrue/container-app-workshop/lesson_1 repository
 ```
 
 :white_check_mark: You'll know this worked when you have a running container with the name `simple-web` and the Flask server is running. You can check this by going to `localhost:5000` in your web browser. You should see the Flask server running.
+
+[This is the output of my conversation with Claude](https://claude.ai/share/6dab144b-153e-4cb4-b517-4d3dfd887853). Your's may look different, but the end result should be the same - a working container running the Flask server. 
+
