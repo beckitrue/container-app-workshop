@@ -69,4 +69,4 @@ Your `claude_desktop_config.json` file should look something like this for this 
 
 1. You can ask Claude to list the containers by asking it to "list my docker containers on my local machine". This will list the containers on your local machine. 
 1. You can also ask Claude to list the files in one of your Github repositiories by asking it to "list the files in my Github repository".
-1. Now, you can ask Claude to recreate the Docker container from `lesson_1`. You can do this by asking it to "create a Docker container from the Dockerfile in my Github repository lesson_1 files". Follow the prompts from Claude to create the container.
+1. Now, you can ask Claude to recreate the Docker container from `lesson_1`. You can do this by asking it to "Use the files in github.com/beckitrue/container-app-workshop/lesson_1 repository to create a Docker container running a Flask server with the configuration found in the Dockerfile. The README.md file has directions to create the container.   You may need to delete an existing container  with the simple-web name on my computer". Read and approve the actions from Claude to create the container.
