@@ -40,7 +40,7 @@ Your `claude_desktop_config.json` file should look something like this for this 
         "GITHUB_PERSONAL_ACCESS_TOKEN",
         "ghcr.io/github/github-mcp-server"
       ],
-      "env": {
+            "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "<your_github_token>"
       }
     },
@@ -57,6 +57,7 @@ Your `claude_desktop_config.json` file should look something like this for this 
     }
   }  
 }
+```
 
 ## Run the MCP server
 
