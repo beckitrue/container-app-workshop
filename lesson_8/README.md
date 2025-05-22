@@ -1,6 +1,6 @@
 # README
 
-In this lesson, we will learn how to use MCP servers to create our Docker container from [lesson_1](../lesson_1). 
+In this lesson, we will learn how to use MCP servers to create our Docker container from [lesson_1](../lesson_1). We're going to use Claude Desktop (a LLM client) to interact with the MCP servers. Claude Desktop is a paid application, but it is free to use for the first 30 days. You can use Claude Desktop to interact with the MCP servers and create Docker container. We could just as easily create a brand new container, but we're going to use the MCP servers to recreate the container from lesson_1. 
 
 MCP is a protocol that allows us to use LLMs to inteact with datasources and tools like Github, Docker, Google Search, and more. You can find more informtion about MCP in the [MCP documentation](https://modelcontextprotocol.io/introduction/).
 
