@@ -4,11 +4,11 @@ In this lesson, we will learn how to use MCP servers to create our Docker contai
 
 MCP is a protocol that allows us to use LLMs to inteact with datasources and tools like Github, Docker, Google Search, and more. You can find more informtion about MCP in the [MCP documentation](https://modelcontextprotocol.io/introduction/).
 
-There are many different MCP servers available, but in this lesson, we will use theones from the [example servers page](https://modelcontextprotocol.io/examples/).
+There are many different MCP servers available, but in this lesson, we will use the ones from the Model Context Protocol [example servers page](https://modelcontextprotocol.io/examples/). Check out the [Offical Integrations](https://modelcontextprotocol.io/integrations/) page for a list of all offical MCP servers available. Other servers are available from other sources.
 
 The MCP protocol is still very new, so expect some bugs and issues. Also, do not expect the security of the implementation to be very mature. Remember to give the MCP server the least amount of permissions possible.
 
-For example, use a read-only token for Github, and do not give it access to your Docker daemon. The MCP server will be running in a Docker container, so it will not have access to your local machine.
+For example, use a read-only token for Github, and set it to expire in 24 hours. And there are other, more secure ways to handle the PAT, but we're keeping it simple for this lab. The MCP server will be running in a Docker container, so it will not have access to your local machine if you are running Docker as a non-root user.
 
 ## Prerequisites
 - [Docker](https://docs.docker.com/get-docker/)
@@ -22,6 +22,41 @@ For example, use a read-only token for Github, and do not give it access to your
 1. Install Claude Desktop
 1. Follow the install instructions for the [MCP Github server](https://github.com/github/github-mcp-server?tab=readme-ov-file#prerequisites)
 1. Follow the install instructions for the [MCP server docker](https://github.com/ckreiling/mcp-server-docker/tree/main#install)
+
+### Claude MCP Server Configuration
+
+Your `claude_desktop_config.json` file should look something like this for this lab:
+
+```json
+{
+  "mcpServers": {
+  "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<your_github_token>"
+      }
+    },
+    "mcp-server-docker": {
+      "command": "docker",
+      "args": [
+       "run",
+        "-i",
+        "--rm",
+        "-v",
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "mcp-server-docker:latest"
+      ]
+    }
+  }  
+}
 
 ## Run the MCP server
 
