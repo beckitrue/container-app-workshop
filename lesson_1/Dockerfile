@@ -1,4 +1,4 @@
-FROM python:3.13.3-slim-bookworm
+FROM python:3.13.5-slim-bookworm
 WORKDIR /flask-simple-app
 COPY requirements.txt requirements.txt
 COPY app.py app.py
